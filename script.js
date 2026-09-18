@@ -1,4 +1,4 @@
-// Dolita - Main Script
+// Dolita — Main Script
 
 document.addEventListener('DOMContentLoaded', () => {
     // Update date
@@ -7,20 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     fechaEl.textContent = now.toLocaleDateString('es-VE', options);
 
-    // --- Tasa values (placeholder — replace with real API or data source) ---
-    // These will be replaced with actual API calls once the app repo is available
+    // --- Tasas de referencia (último dato del JSON de la app) ---
+    // Cuando tengas una API propia, reemplazá estos valores
     const TASAS = {
-        bcv: 36.50,    // Replace with real BCV rate
-        usdt: 38.75    // Replace with real USDT P2P rate
+        usd: 775.34,   // Dólar BCV
+        eur: 897.82,   // Euro BCV
+        usdt: 780.50   // USDT P2P (estimado, ajustar con dato real)
     };
 
-    // Animate rate values
-    animateValue('bcv-valor', TASAS.bcv);
+    animateValue('usd-valor', TASAS.usd);
+    animateValue('eur-valor', TASAS.eur);
     animateValue('usdt-valor', TASAS.usdt);
 
-    // Smooth scroll for anchor links
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
             if (target) {
@@ -28,6 +29,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 });
 
 // Animate number counting up
@@ -35,8 +47,8 @@ function animateValue(elementId, targetValue) {
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    const duration = 1500;
-    const steps = 60;
+    const duration = 1200;
+    const steps = 50;
     const increment = targetValue / steps;
     let current = 0;
     let step = 0;
