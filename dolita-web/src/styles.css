@@ -1,9 +1,24 @@
-/* Global styles */
-html {
-    scroll-behavior: smooth;
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: #09090b; color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
+::selection { background: rgba(111,207,151,.2); color: #fff; }
+a { text-decoration: none; color: inherit; }
 
-::selection {
-    background: rgba(111, 207, 151, 0.25);
-    color: white;
+/* Subtle grid */
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+  background-size: 80px 80px;
 }
+body > * { position: relative; z-index: 1; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #09090b; }
+::-webkit-scrollbar-thumb { background: #27272a; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
