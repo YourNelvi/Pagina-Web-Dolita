@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolita - Tasas de Cambio BCV y USDT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a',
+                        accent: '#3b82f6',
+                        'accent-dark': '#2563eb',
+                        surface: '#1e293b',
+                        'surface-light': '#334155',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-primary text-white font-sans">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full bg-primary/90 backdrop-blur-md z-50 border-b border-surface-light/30">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-accent rounded-xl flex items-center justify-center font-bold text-lg">$</div>
+                <span class="text-xl font-bold">Dolita</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sm text-gray-300">
+                <a href="#inicio" class="hover:text-white transition">Inicio</a>
+                <a href="#tasas" class="hover:text-white transition">Tasas</a>
+                <a href="#descarga" class="hover:text-white transition">Descargar</a>
+                <a href="#contacto" class="hover:text-white transition">Contacto</a>
+            </div>
+            <a href="#descarga" class="bg-accent hover:bg-accent-dark px-4 py-2 rounded-lg text-sm font-semibold transition">
+                Descargar
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section id="inicio" class="min-h-screen flex items-center justify-center pt-20 px-4">
+        <div class="text-center max-w-3xl">
+            <div class="inline-block bg-accent/10 border border-accent/30 rounded-full px-4 py-1 text-accent text-sm mb-6">
+                <i class="fas fa-bolt mr-1"></i> Tasas en tiempo real
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+                Conoce la tasa del día
+                <span class="text-accent"> BCV</span> y
+                <span class="text-emerald-400"> USDT</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl mb-8 max-w-xl mx-auto">
+                Dolita te muestra las tasas de cambio más actualizadas. Rápido, simple y siempre disponible.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#descarga" class="bg-accent hover:bg-accent-dark px-8 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fas fa-download"></i> Descargar Gratis
+                </a>
+                <a href="#tasas" class="border border-surface-light hover:border-accent px-8 py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                    <i class="fas fa-chart-line"></i> Ver Tasas
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tasas -->
+    <section id="tasas" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4">Tasas de Hoy</h2>
+            <p class="text-gray-400 text-center mb-10">Actualizado: <span id="fecha-actualizacion">Cargando...</span></p>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- BCV -->
+                <div class="bg-surface rounded-2xl p-6 border border-surface-light/50 hover:border-accent/50 transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-landmark text-accent text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">BCV</h3>
+                                <p class="text-gray-400 text-sm">Banco Central de Venezuela</p>
+                            </div>
+                        </div>
+                        <span class="text-xs bg-accent/10 text-accent px-2 py-1 rounded-full">Oficial</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400 text-sm mb-1">Dólar → Bolívar</p>
+                        <p class="text-4xl font-extrabold" id="tasa-bcv"> Bs. <span id="bcv-valor">---</span></p>
+                    </div>
+                </div>
+
+                <!-- USDT -->
+                <div class="bg-surface rounded-2xl p-6 border border-surface-light/50 hover:border-emerald-500/50 transition">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-coins text-emerald-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">USDT</h3>
+                                <p class="text-gray-400 text-sm">Tether (Establecoin)</p>
+                            </div>
+                        </div>
+                        <span class="text-xs bg-emerald-500/10 text-emerald-400 px-2 py-1 rounded-full">P2P</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-gray-400 text-sm mb-1">USDT → Bolívar</p>
+                        <p class="text-4xl font-extrabold text-emerald-400"> Bs. <span id="usdt-valor">---</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center text-gray-500 text-xs mt-6">
+                <i class="fas fa-info-circle mr-1"></i> Valores de referencia. La tasa real puede variar.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-20 px-4 bg-surface/30">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12">¿Por qué Dolita?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-accent text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Rápido</h3>
+                    <p class="text-gray-400 text-sm">Consulta las tasas en segundos sin complicaciones.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shield-halved text-emerald-400 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Confiable</h3>
+                    <p class="text-gray-400 text-sm">Datos actualizados del BCV y mercado P2P.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mobile-screen text-purple-400 text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-lg mb-2">Sin Instalación</h3>
+                    <p class="text-gray-400 text-sm">Accedé desde tu navegador en cualquier dispositivo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Descarga -->
+    <section id="descarga" class="py-20 px-4">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Descargá Dolita</h2>
+            <p class="text-gray-400 mb-8">Disponible gratis para tu dispositivo Android.</p>
+            <a href="#" id="btn-descarga" class="inline-flex items-center gap-3 bg-accent hover:bg-accent-dark px-8 py-4 rounded-2xl font-bold text-lg transition">
+                <i class="fab fa-google-play text-2xl"></i>
+                Descargar APK
+            </a>
+            <p class="text-gray-500 text-sm mt-4">o visitá nuestro repositorio en GitHub</p>
+            <a href="#" id="link-github" class="text-accent hover:underline text-sm" target="_blank">
+                <i class="fab fa-github mr-1"></i> Ver en GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section id="contacto" class="py-20 px-4 bg-surface/30">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">Seguinos</h2>
+            <p class="text-gray-400 mb-8">Enterate de las novedades y actualizaciones.</p>
+            <div class="flex justify-center gap-6 flex-wrap" id="redes-sociales">
+                <a href="#" class="w-14 h-14 bg-surface rounded-xl flex items-center justify-center hover:bg-accent/20 hover:text-accent transition text-2xl" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="w-14 h-14 bg-surface rounded-xl flex items-center justify-center hover:bg-blue-500/20 hover:text-blue-400 transition text-2xl" title="Telegram">
+                    <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="#" class="w-14 h-14 bg-surface rounded-xl flex items-center justify-center hover:bg-sky-500/20 hover:text-sky-400 transition text-2xl" title="TikTok">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="#" class="w-14 h-14 bg-surface rounded-xl flex items-center justify-center hover:bg-gray-500/20 hover:text-gray-300 transition text-2xl" title="X (Twitter)">
+                    <i class="fab fa-x-twitter"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-surface-light/30">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-gray-500 text-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-accent rounded-md flex items-center justify-center font-bold text-xs">$</div>
+                <span>Dolita &copy; 2026</span>
+            </div>
+            <p>Hecho con <i class="fas fa-heart text-red-500"></i> en Venezuela</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
