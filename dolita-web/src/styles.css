@@ -1,0 +1,9 @@
+/* Global styles */
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgba(111, 207, 151, 0.25);
+    color: white;
+}
