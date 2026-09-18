@@ -1,44 +1,73 @@
-/* Dolita — Linear-inspired minimal styles */
+/* Dolita — App-matching styles */
 
 html {
     scroll-behavior: smooth;
 }
 
-/* Selection */
 ::selection {
-    background: rgba(34, 197, 94, 0.2);
+    background: rgba(111, 207, 151, 0.25);
     color: white;
 }
 
-/* Subtle grid pattern */
-body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-}
-
-body > * {
+/* ===== Tarjeta principal con gradiente verde ===== */
+.rate-card {
+    background: linear-gradient(160deg, #6FCF97 0%, #4ade80 30%, #2E7D32 100%);
     position: relative;
-    z-index: 1;
 }
 
-/* Custom scrollbar */
+.rate-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 1.5rem;
+    background: radial-gradient(circle at 50% 0%, rgba(255,255,255,0.15) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+/* ===== Chips selector ===== */
+.chip {
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border: 1px solid #2a2a35;
+    background: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.chip:hover {
+    border-color: #4ade80;
+    color: white;
+}
+
+.chip-active {
+    background: rgba(74, 222, 128, 0.12);
+    border-color: rgba(74, 222, 128, 0.4);
+    color: #4ade80;
+}
+
+/* ===== Cotizacion cards ===== */
+.cotizacion-card {
+    transition: all 0.2s ease;
+}
+
+.cotizacion-card:hover {
+    transform: translateY(-1px);
+}
+
+/* ===== Scrollbar ===== */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #09090b;
+    background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #27272a;
+    background: #2a2a35;
     border-radius: 3px;
 }
 
@@ -46,24 +75,31 @@ body > * {
     background: #3f3f46;
 }
 
-/* Focus visible */
+/* ===== Focus ===== */
 a:focus-visible,
-button:focus-visible {
-    outline: 2px solid rgba(34, 197, 94, 0.5);
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid rgba(74, 222, 128, 0.5);
     outline-offset: 2px;
-    border-radius: 4px;
 }
 
-/* Animate on scroll (progressive enhancement) */
-@media (prefers-reduced-motion: no-preference) {
-    .fade-in {
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
+/* ===== Input placeholder ===== */
+input::placeholder {
+    color: #4b5563;
+}
 
-    .fade-in.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* ===== Subtle grid pattern ===== */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 50% 0%, rgba(111, 207, 151, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body > * {
+    position: relative;
+    z-index: 1;
 }
